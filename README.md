@@ -22,9 +22,7 @@ A meme that captures how I currently feel about my university studies is
 - B
 - C
 
-**Bold Text**
-*Italic Text*
+[GitHub Home Page](https://www.github.com)
 
-[GitHub](github.com)
-
+**This is a sleeping penguin** *zzz*  
 ![sleeping-penguin](https://c.tenor.com/trpAVinW6gAAAAAd/tenor.gif)
