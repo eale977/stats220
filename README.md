@@ -11,3 +11,20 @@ A little about me:
 A meme that captures how I currently feel about my university studies is 
 
 ![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)
+
+# Ordered List
+1. A
+2. B
+3. C
+
+## Unordered List
+- A
+- B
+- C
+
+**Bold Text**
+*Italic Text*
+
+[GitHub](github.com)
+
+![sleeping-penguin](https://c.tenor.com/trpAVinW6gAAAAAd/tenor.gif)
