@@ -1,0 +1,114 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+library(tidyverse)
+```
+
+```{css}
+body {
+  color: #194761;
+  background-color: #D9D9D9;
+  font-family: 'Segoe UI'
+}
+```
+
+## This dynamic report tracks my performance from daily races in the game Le Mans Ultimate.
+
+```{r}
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTXHwT73wmXutjHiMkIcBhKrB4vywWw4nQaIL73jXNJRQncIWTACNo7iLGn7XwfJ2hHBwJpgwA0AzNH/pub?gid=268033178&single=true&output=csv")
+
+latest_data <- logged_data %>%
+  rename(track = 2,
+         quali_position = 3,
+         race_position = 4,
+         split_number = 5,
+         total_splits = 6)
+
+plot_title <- "Le Mans Ultimate Statistics"
+plot_caption <- "Source: Le Mans Ultimate Driver Profile"
+
+# Qualifying position at each track
+quali_plot <- ggplot(data = latest_data) +
+  geom_bar(aes(x = latest_data$quali_position, fill = track)) + 
+  labs(title = plot_title,
+       subtitle = "Qualifying Position",
+       caption = plot_caption,
+       x = "Qualifying Position",
+       y = "Count")
+
+mean_qualifying <- latest_data$quali_position %>%
+  mean() %>%
+  round(1)
+
+median_qualifying <- latest_data$quali_position %>%
+  median()
+
+# Race finishing position at each track
+race_plot <- ggplot(data = latest_data) +
+  geom_bar(aes(x = latest_data$race_position, fill = track)) + 
+  labs(title = plot_title,
+       subtitle = "Race Finishing Position",
+       caption = plot_caption,
+       x = "Race Position",
+       y = "Count")
+
+mean_race <- latest_data$race_position %>%
+  mean() %>%
+  round(1)
+
+median_race <- latest_data$race_position %>%
+  median()
+
+# Positions gained plot
+positions_gained_plot <- ggplot(data = latest_data) +
+  geom_bar(aes(x = quali_position - race_position, fill = track)) + 
+  labs(title = plot_title,
+       subtitle = "Positions Gained in the Race",
+       caption = plot_caption,
+       x = "Positions Gained",
+       y = "Count")
+
+median_positions_gained <- (latest_data$quali_position - latest_data$race_position) %>%
+  median()
+
+# Total Races plot
+total_races_plot <- ggplot(data = latest_data) +
+  geom_bar(aes(x = track),
+           fill = "#3691cf") + 
+  labs(title = plot_title,
+       subtitle = "Total races at each track",
+       caption = plot_caption,
+       x = "Track",
+       y = "Total Races")
+
+total_races_count <- latest_data$track %>%
+  length()
+```
+
+```{r fig.width = 10, fig.height = 6}
+quali_plot
+```
+
+#### The mean qualifying position was `r mean_qualifying` and the median qualifying position was `r median_qualifying`
+
+```{r fig.width = 10, fig.height = 6}
+race_plot
+```
+
+#### The mean race position was `r mean_race` and the median race position was `r median_race`
+
+```{r fig.width = 10, fig.height = 6}
+positions_gained_plot
+```
+
+#### The median positions gained was `r median_positions_gained`
+
+```{r fig.width = 10, fig.height = 6}
+total_races_plot
+```
+
+#### Total races: `r total_races_count`
