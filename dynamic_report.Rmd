@@ -12,7 +12,7 @@ library(tidyverse)
 body {
   color: #194761;
   background-color: #D9D9D9;
-  font-family: 'Segoe UI'
+  font-family: 'Segoe UI';
 }
 ```
 
@@ -93,19 +93,19 @@ total_races_count <- latest_data$track %>%
 quali_plot
 ```
 
-#### The mean qualifying position was `r mean_qualifying` and the median qualifying position was `r median_qualifying`
+#### Mean qualifying position: `r mean_qualifying` | Median qualifying position:  `r median_qualifying`
 
 ```{r fig.width = 10, fig.height = 6}
 race_plot
 ```
 
-#### The mean race position was `r mean_race` and the median race position was `r median_race`
+#### Mean race position: `r mean_race` | Median race position: `r median_race`
 
 ```{r fig.width = 10, fig.height = 6}
 positions_gained_plot
 ```
 
-#### The median positions gained was `r median_positions_gained`
+#### Median positions gained: `r median_positions_gained`
 
 ```{r fig.width = 10, fig.height = 6}
 total_races_plot
